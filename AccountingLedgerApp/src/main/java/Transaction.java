@@ -40,6 +40,11 @@ public class Transaction {
 
 
     // Maybe a method to print the transaction nicely
+    public static String transactionString(Transaction transactionobject){
+        return String.format("Date: %s || Time: %s || Description: %s || Vendor: %s || Amount: %s",
+                transactionobject.getDate(),transactionobject.getTime(),transactionobject.getDescription(),transactionobject.getVendor(),transactionobject.getAmount());
+    }
+
 
 
     //Getter methods
