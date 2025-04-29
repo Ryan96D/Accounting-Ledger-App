@@ -30,17 +30,21 @@ public class Transaction {
     // A method to turn a Transaction into a CSV line
     public String convertCSV(){
 
-        return String.format("%s,%s,%s,%s,%.s",date.toString(),time.toString(),description,vendor,amount.setScale(2, RoundingMode.HALF_UP).toString());
+        return String.format("%s,%s,%s,%s,%s",date.toString(),time.toString(),description,vendor,amount.setScale(2, RoundingMode.HALF_UP).toString());
 
     }
 
 
 
     // A method to turn a CSV line into a Transaction
+    public static String csvToString(String date, String time, String description, String vendor,BigDecimal amount){
+        return String.format("Date: %s || Time: %s || Description: %s || Vendor: %s || Amount: %s",
+                date,time,description,vendor,amount.toPlainString());
+    }
 
 
     // Maybe a method to print the transaction nicely
-    public static String transactionString(Transaction transactionobject){
+    public static String transactionToString(Transaction transactionobject){
         return String.format("Date: %s || Time: %s || Description: %s || Vendor: %s || Amount: %s",
                 transactionobject.getDate(),transactionobject.getTime(),transactionobject.getDescription(),transactionobject.getVendor(),transactionobject.getAmount());
     }

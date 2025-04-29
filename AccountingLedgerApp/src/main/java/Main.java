@@ -21,14 +21,14 @@ static Scanner scanner = new Scanner(System.in);
     }
 
     public static void showHomeScreen() {
-        List<Transaction> transaction = new ArrayList<Transaction>(); //Make an arraylist to store transactions before saving
+        List<Transaction> transactions = new ArrayList<Transaction>(); //Make an arraylist to store transactions before saving
 
         while (true) {
             System.out.println("\nMain Menu:\n" +
                     "(1) Add deposit \n" +
                     "(2) Make Payment \n" +
                     "(3) View Ledger \n" +
-                    "(4) Exit");
+                    "(4) Exit and Save");
 
             int homeMenuChoice = 0;
 
@@ -36,27 +36,30 @@ static Scanner scanner = new Scanner(System.in);
                 homeMenuChoice = Integer.parseInt(scanner.nextLine()); //This try-catch validates that user input is an int
             } catch (NumberFormatException e) {
                 System.out.println("Invalid choice, please choose 1,2,3, or 4.");
-
             }
 
             switch (homeMenuChoice) {
+
                 case 1: //Deposit
                     Transaction deposit = CreateTransaction.createTransaction(scanner, true);
-                    transaction.add(deposit);
+                    transactions.add(deposit);
+                    SaveTransaction.saveTransaction(transactions,"Transactions.csv");
                     break;
+
                 case 2: //Payments
                     Transaction payment = CreateTransaction.createTransaction(scanner, false);
-                    transaction.add(payment);
+                    transactions.add(payment);
+                    SaveTransaction.saveTransaction(transactions,"Transactions.csv");
                     break;
+
                 case 3: //Open Ledger
                     System.out.println("Viewing all transactions:");
-                    for (int i = 0; i < transaction.size(); i++) {
-                        Transaction localTransaction = transaction.get(i);
-                        System.out.println("("+(i+1)+")"+ Transaction.transactionString(localTransaction));
-                    }
+                    Ledger.displayLedgerMenu(scanner);
                     break;
+
                 case 4: //Exit App
-                    System.out.println("Exiting the app...");
+                    System.out.println("Exiting the app and saving...");
+                    SaveTransaction.saveTransaction(transactions,"Transactions.csv");
                     scanner.close();
                     System.out.println("Have a great day!");
                     break;

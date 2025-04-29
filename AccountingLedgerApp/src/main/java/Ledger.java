@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Ledger {
     //All entries should show the newest entries first
 // A) All - Display all entries
@@ -11,6 +13,21 @@ public class Ledger {
 //      5) Search by Vendor - prompt the user for the vendor name and display all entries for that vendor
 //      0) Back - go back to the report page
 // H) Home - go back to the home page
+    public static void displayLedgerMenu(Scanner scanner){
+        System.out.println("\nLedger Menu: \n" +
+                "(1) All - View all transactions\n" +
+                "(2) Deposits - View Deposits only\n" +
+                "(3) Payments - View Payments only\n" +
+                "(4) Home - Go back to Home menu");
+
+        int ledgerMenuChoice = 0;
+        try {
+            ledgerMenuChoice = Integer.parseInt(scanner.nextLine());
+        }catch (NumberFormatException e){
+            System.out.println("Invalid choice, please choose 1-4");
+        }
+        ReadTransactions.readFromCSV("Transactions.csv",ledgerMenuChoice);
+    }
 
 
 }
