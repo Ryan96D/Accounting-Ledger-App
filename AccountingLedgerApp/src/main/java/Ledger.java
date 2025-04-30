@@ -1,3 +1,6 @@
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ledger {
@@ -23,11 +26,12 @@ public class Ledger {
         int ledgerMenuChoice = 0;
         try {
             ledgerMenuChoice = Integer.parseInt(scanner.nextLine());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Invalid choice, please choose 1-4");
+            return;
         }
-        ReadTransactions.readFromCSV("Transactions.csv",ledgerMenuChoice);
+
+        List<Transaction> transactionList = ReadTransactions.readCSV("Transactions.csv");
+        TransactionViewer.displayTransactions(transactionList, ledgerMenuChoice);
     }
-
-
 }

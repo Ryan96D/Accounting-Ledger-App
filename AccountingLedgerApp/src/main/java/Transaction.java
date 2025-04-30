@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Transaction {
 
@@ -27,26 +28,47 @@ public class Transaction {
         this.amount = amount;
     }
 
-    // A method to turn a Transaction into a CSV line
-    public String convertCSV(){
+    private static final DateTimeFormatter yyyyMMdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    // A method to turn a Transaction object into a CSV line
+    public String objectToCSV(){
 
         return String.format("%s,%s,%s,%s,%s",date.toString(),time.toString(),description,vendor,amount.setScale(2, RoundingMode.HALF_UP).toString());
 
     }
 
 
-
-    // A method to turn a CSV line into a Transaction
+    // A method to turn a CSV line into a String (from a csv
     public static String csvToString(String date, String time, String description, String vendor,BigDecimal amount){
         return String.format("Date: %s || Time: %s || Description: %s || Vendor: %s || Amount: %s",
                 date,time,description,vendor,amount.toPlainString());
     }
 
 
-    // Maybe a method to print the transaction nicely
-    public static String transactionToString(Transaction transactionobject){
+    // A method to convert Transaction to a String (from an object)
+    public static String objectToString(Transaction transactionobject){
         return String.format("Date: %s || Time: %s || Description: %s || Vendor: %s || Amount: %s",
                 transactionobject.getDate(),transactionobject.getTime(),transactionobject.getDescription(),transactionobject.getVendor(),transactionobject.getAmount());
+    }
+
+    public static Transaction csvToObject(String csvLine) {
+        String[] transactionInfo = csvLine.split(",");
+
+        if (transactionInfo.length < 5) {
+            return null;
+        }
+
+        String date = transactionInfo[0];
+        String time = transactionInfo[1];
+        String description = transactionInfo[2];
+        String vendor = transactionInfo[3];
+        String amountString = transactionInfo[4];
+
+        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        BigDecimal amountBigDecimal = new BigDecimal(amountString);
+        LocalTime localTime = LocalTime.parse(time);
+
+        return new Transaction(localDate, localTime, description, vendor, amountBigDecimal);
     }
 
 
