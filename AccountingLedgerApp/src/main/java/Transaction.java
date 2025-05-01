@@ -51,6 +51,7 @@ public class Transaction {
                 transactionobject.getDate(),transactionobject.getTime(),transactionobject.getDescription(),transactionobject.getVendor(),transactionobject.getAmount());
     }
 
+
     public static Transaction csvToObject(String csvLine) {
         String[] transactionInfo = csvLine.split(",");
 
@@ -64,7 +65,11 @@ public class Transaction {
         String vendor = transactionInfo[3];
         String amountString = transactionInfo[4];
 
-        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate localDate = ReadTransactions.parseDateFlexible(date);
+        if (localDate == null) {
+            return null;
+        }
+
         BigDecimal amountBigDecimal = new BigDecimal(amountString);
         LocalTime localTime = LocalTime.parse(time);
 
