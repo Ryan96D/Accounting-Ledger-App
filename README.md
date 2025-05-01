@@ -36,8 +36,14 @@ Developed as part of the **Year Up United** program by **Ryan Do**, this project
 ---
 
 ## 📁 File Structure
-. ├── Main.java # Program entry point and home menu ├── Ledger.java # Ledger menu and transaction viewing logic ├── Reports.java # Transaction reports and filters ├── CreateTransaction.java # Handles user input for new transactions ├── Transaction.java # Transaction model class ├── SaveTransaction.java # Saves transactions to CSV ├── ReadTransactions.java # Reads transactions from CSV └── Transactions.csv # Ledger data (auto-created if not present)
-
+├── Main.java # Program entry point and home menu
+├── Ledger.java # Ledger menu and transaction viewing logic
+├── Reports.java # Transaction reports and filters
+├── CreateTransaction.java # Handles user input for new transactions
+├── Transaction.java # Transaction model class
+├── SaveTransaction.java # Saves transactions to CSV
+├── ReadTransactions.java # Reads transactions from CSV
+└── Transactions.csv # Ledger data (auto-created if not present)
 
 ---
 
