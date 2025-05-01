@@ -8,8 +8,9 @@ import java.util.Scanner;
 public class CreateTransaction {
 
     public static Transaction createTransaction(Scanner scanner,boolean isItDeposit){
-
+        LocalTime time = null;
         LocalDate date = null;
+
         while (true){
             System.out.println("Enter the date of this transaction (yyyy-MM-dd): ");
             String userInput = scanner.nextLine();
@@ -20,7 +21,7 @@ public class CreateTransaction {
                 System.out.println("Incorrect date format. Try again. ");
             }
         }
-        LocalTime time = null;
+
         while (true){
             System.out.println("Enter the time of this transaction (HH:mm): ");
             String userInput = scanner.nextLine();
