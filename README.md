@@ -68,6 +68,7 @@ Viewing transactions:
 Date: 2025-04-27 || Time: 09:30 || Description: Coffee || Vendor: Dunkin Donuts || Amount: -3.25
 Date: 2025-04-26 || Time: 14:15 || Description: Grocery Store || Vendor: Walmart || Amount: -55.75
 Date: 2025-04-25 || Time: 10:00 || Description: Paycheck || Vendor: Employer || Amount: 1500.00
+```
 
 🧑‍💻 Author
 Ryan Do
