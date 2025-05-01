@@ -10,19 +10,49 @@ public class Reports {
 
 
     public static void showReportsMenu(Scanner scanner){
+        while (true){
+        System.out.println("\nReports Menu: \n" +
+                "(1) Month to current date \n" +
+                "(2) Previous Month \n" +
+                "(3) Year to current date \n" +
+                "(4) Previous year \n" +
+                "(5) Search by Vendor \n" +
+                "(6) Return to previous menu \n");
 
-        System.out.println("\nReports Menu: \n");
         int reportsMenuChoice = 0;
         try {
-          reportsMenuChoice= Integer.parseInt(Main.scanner.nextLine());
+          reportsMenuChoice= Integer.parseInt(scanner.nextLine());
 
         }catch (NumberFormatException e){
             System.out.println("Not a valid number");
             System.out.println(e.getMessage());
         }
 
+        switch (reportsMenuChoice){
+            case 1:
+                monthToDate();
+                break;
+            case 2:
+                previousMonth();
+                break;
+            case 3:
+                yearToDate();
+                break;
+            case 4:
+                previousYear();
+                break;
+            case 5:
+                searchByVendor();
+                break;
+            case 6:
+                return;
 
+
+            default:
+                System.out.println("Invalid choice, please choose 1-6");
+            }
         }
+    }
 
 
     public static void monthToDate() {

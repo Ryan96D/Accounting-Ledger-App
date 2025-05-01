@@ -21,15 +21,24 @@ public class Ledger {
                 System.out.println("Invalid choice, please choose 1-5");
                 continue;
             }
-            if (ledgerMenuChoice == 5) {
-                // Option 5: Go back to Home menu (exit loop)
-                return;
-            }
-            if (ledgerMenuChoice >= 1 && ledgerMenuChoice <= 4) {
-            List<Transaction> transactionList = ReadTransactions.readCSV("Transactions.csv");
-            displayTransactions(transactionList, ledgerMenuChoice); //call method
-            } else {
-                System.out.println("Invalid choice, please choose 1-5");
+            switch (ledgerMenuChoice) {
+                case 1:
+                case 2:
+                case 3:
+                    List<Transaction> transactionList = ReadTransactions.readCSV("Transactions.csv");
+                    System.out.println("\nViewing transactions:\n");
+                    displayTransactions(transactionList, ledgerMenuChoice);
+                    break;
+
+                case 4:
+                    Reports.showReportsMenu(scanner);
+                    break;
+
+                case 5:
+                    return;
+
+                default:
+                    System.out.println("Invalid choice, please choose 1-5.");
             }
         }
     }
@@ -37,8 +46,6 @@ public class Ledger {
 
     public static void displayTransactions(List<Transaction> transactionList, int ledgerMenuChoice) {
         Collections.reverse(transactionList); // Reverse list once
-
-        System.out.println("\nViewing transactions:\n");
 
         for (Transaction transaction : transactionList) {
             BigDecimal amount = transaction.getAmount();
@@ -60,17 +67,8 @@ public class Ledger {
                     }
                     break;
 
-                case 4:
-                    Reports.showReportsMenu(Main.scanner); //Open Reports Menu
-
-                    break;
-
-                case 5: //return to Home
-
-                    break;
-
                 default:
-                    System.out.println("Invalid choice, please choose 1, 2, 3, or 4.");
+                    System.out.println("Invalid choice, please choose 1-3.");
                     break;
             }
         }
