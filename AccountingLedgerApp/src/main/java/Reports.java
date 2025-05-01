@@ -4,15 +4,26 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Reports {
-    public static void main(String[] args) {
-        monthToDate();
-        previousMonth();
-        previousYear();
-        yearToDate();
-        searchByVendor();
-    }
+
+
+    public static void showReportsMenu(Scanner scanner){
+
+        System.out.println("\nReports Menu: \n");
+        int reportsMenuChoice = 0;
+        try {
+          reportsMenuChoice= Integer.parseInt(Main.scanner.nextLine());
+
+        }catch (NumberFormatException e){
+            System.out.println("Not a valid number");
+            System.out.println(e.getMessage());
+        }
+
+
+        }
+
 
     public static void monthToDate() {
 
@@ -137,6 +148,7 @@ public class Reports {
         }
     }
 }
+
 
 
 
