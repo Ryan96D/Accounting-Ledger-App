@@ -17,7 +17,8 @@ public class Reports {
                 "(3) Year to current date \n" +
                 "(4) Previous year \n" +
                 "(5) Search by Vendor \n" +
-                "(6) Return to previous menu \n");
+                "(6) -Custom Search Menu- \n" +
+                "(7) Return to previous menu");
 
         int reportsMenuChoice = 0;
         try {
@@ -45,11 +46,14 @@ public class Reports {
                 searchByVendor();
                 break;
             case 6:
+                CustomSearch.search(scanner);
+                break;
+            case 7:
                 return;
 
 
             default:
-                System.out.println("Invalid choice, please choose 1-6");
+                System.out.println("Invalid choice, please choose 1-7");
             }
         }
     }

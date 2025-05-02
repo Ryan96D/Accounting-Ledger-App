@@ -38,12 +38,12 @@ public class CreateTransaction {
         System.out.println("Enter the vendor/person this transaction is with: ");
         String vendor = scanner.nextLine();
 
-        BigDecimal amount = BigDecimal.ZERO;
+        BigDecimal amount;
         while (true){
             System.out.println("Enter the amount/price for this transaction");
             String userInput = scanner.nextLine();
             try {
-                amount = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP); //parse string into BigDecimal and set to 2 decimal points
+                amount = new BigDecimal(userInput).abs().setScale(2, RoundingMode.HALF_UP); //parse string into BigDecimal absolute value and set to 2 decimal points
 
                 if (!isItDeposit){ //If it is not a deposit, but a payment instead
                     amount = amount.negate(); //convert to negative for payments
