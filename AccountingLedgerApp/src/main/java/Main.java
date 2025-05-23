@@ -1,23 +1,11 @@
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-        // Start the program
-        // Show the main menu
         showHomeScreen();
 
-        // Keep running until the user chooses to exit (Loop)
     }
 
     public static void showHomeScreen() {

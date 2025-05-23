@@ -11,7 +11,7 @@ public class CustomSearch {
     public static void search(Scanner scanner) {
         System.out.println("Leave any field blank to skip filtering by that field.");
 
-        LocalDate startDate = null;
+        LocalDate startDate = null; //auto set to null to skip if nothing is entered
         LocalDate endDate = null;
         String description = "";
         String vendor = "";
@@ -61,21 +61,21 @@ public class CustomSearch {
             String csvLine;
 
             while ((csvLine = bufferedReader.readLine()) != null) {
-                Transaction transaction = Transaction.csvToObject(csvLine);
-                if (transaction == null) continue;
+                Transaction transactionObject = Transaction.csvToObject(csvLine);
+                if (transactionObject == null) continue;
 
-                boolean matches = true;
+                boolean matches = true; //default to true so that we can filter
 
-                if (startDate != null && transaction.getDate().isBefore(startDate)) matches = false;
-                if (endDate != null && transaction.getDate().isAfter(endDate)) matches = false;
-                if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description)) matches = false;
-                if (!vendor.isEmpty() && !transaction.getVendor().toLowerCase().contains(vendor)) matches = false;
-                if (minAmount != null && transaction.getAmount().compareTo(minAmount) < 0) matches = false;
-                if (maxAmount != null && transaction.getAmount().compareTo(maxAmount) > 0) matches = false;
+                if (startDate != null && transactionObject.getDate().isBefore(startDate)) matches = false; //if object date is before start date, false
+                if (endDate != null && transactionObject.getDate().isAfter(endDate)) matches = false;
+                if (!description.isEmpty() && !transactionObject.getDescription().toLowerCase().contains(description)) matches = false;
+                if (!vendor.isEmpty() && !transactionObject.getVendor().toLowerCase().contains(vendor)) matches = false;
+                if (minAmount != null && transactionObject.getAmount().compareTo(minAmount) < 0) matches = false; //compareTo returns boolean (1/0/-1)(>/=/<
+                if (maxAmount != null && transactionObject.getAmount().compareTo(maxAmount) > 0) matches = false;
 
 
                 if (matches) {
-                    System.out.println(Transaction.objectToString(transaction));
+                    System.out.println(Transaction.objectToString(transactionObject)); // if passes all checks
                 }
             }
 

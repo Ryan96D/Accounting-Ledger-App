@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Reports {
@@ -69,12 +67,12 @@ public class Reports {
             System.out.println("\nCurrent Month to Date Transactions: \n");
 
             while ((csvLine = bufferedReader.readLine()) != null) {
-                Transaction transaction = Transaction.csvToObject(csvLine);
+                Transaction transactionObject = Transaction.csvToObject(csvLine);
 
-                if (transaction != null) {
-                    LocalDate date = transaction.getDate();
+                if (transactionObject != null) {
+                    LocalDate date = transactionObject.getDate();
                     if ((date.isEqual(firstDayOfMonth) || date.isAfter(firstDayOfMonth)) && (date.isEqual(today) || date.isBefore(today))) {
-                        System.out.println(Transaction.objectToString(transaction));
+                        System.out.println(Transaction.objectToString(transactionObject));
 
                     }
                 }
